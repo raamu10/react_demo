@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Form, Button} from 'react-bootstrap';
 
-import Users from '../components/Users';
 import LoginService from './LoginService';
 
 class Login extends Component {
@@ -18,6 +17,7 @@ class Login extends Component {
         
         this.updateVal = this.updateVal.bind(this);
         this.login = this.login.bind(this);
+        console.log("log props:", props);
     }
 
     updateVal(e) {
@@ -33,8 +33,9 @@ class Login extends Component {
     }
 
     login () {
-        console.log("-- state val:", this.state.user);
-        this.loginService.loginUser(this.state.user);
+        this.loginService.loginUser(this.state.user, function() {
+            this.props.navProp.history.push('/users');
+        }.bind(this));
     }
 
     
@@ -56,7 +57,6 @@ class Login extends Component {
                         Login
                     </Button>
                 </Form>
-                <Users />
             </div>
         );
     }

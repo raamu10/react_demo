@@ -14,12 +14,12 @@ class LoginService {
     }
 
     //Login User
-    loginUser (user) {
+    loginUser (user, cb) {
         console.log("LoginService:", user);
         let url = BASE_URL + 'api/login';
         axios.post(url, user).then(response => {
             console.log(response)
-            alert("Logged In successfully!!");
+            cb();
         }).catch(error => {
             console.log("error", error);
             alert("User Not found");

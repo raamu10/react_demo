@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, Link} from 'react-router-dom';
 import './App.css';
 
-//import Header from './header/Header';
+import Header from './header/Header';
 import Home from './home/Home';
 import Login from './Login/Login';
+
+import Users from './components/Users';
 
 //Todo
 //import Todo from './todo/Todo';
@@ -16,11 +18,20 @@ class App extends Component {
     return (
       <div>
             {/* imported from Header.js */}
-            {/* <Header />  */}
-            {/* <Content /> */}
+           
 
+            {/* <Content /> */}
             {/* <Todo /> */}
-            <Login />
+            {/* <Login /> */}
+
+            <Router>
+                <Header />
+                <Switch>
+                    <Route exact path="/" component={Home}></Route>
+
+                    <Route exact path="/users" component={Users}></Route>
+                </Switch>
+            </Router>
       </div>
     );
   }
